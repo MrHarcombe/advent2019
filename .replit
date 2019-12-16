@@ -1,0 +1,2 @@
+language = "bash"
+run = "echo run it yourself"
