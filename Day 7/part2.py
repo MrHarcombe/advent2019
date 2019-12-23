@@ -38,7 +38,7 @@ class intcode:
 
   def execute_next(self):
     if not self.has_finished():
-      #print(self.command, self.parameters)
+      print(self.command, self.parameters)
       if self.command == 1:
           # addition
           operand1 = self.ops[self.index+1]
@@ -172,7 +172,7 @@ class intcode:
   def run_to_completion(self):
     while not self.has_finished():
       self.execute_next()
-      return self.get_output()
+    return self.get_output()
 
 def part2():
   intfile = "test2.txt"
@@ -219,20 +219,16 @@ def part2():
 
 amp = intcode("test1-1.txt", [4,0])
 output = amp.run_to_completion()
-print(output)
-amp.add_input(3)
-amp.add_input(output)
+#print(output)
+amp = intcode("test1-1.txt", [3,output])
 output = amp.run_to_completion()
-print(output)
-amp.add_input(2)
-amp.add_input(output)
+#print(output)
+amp = intcode("test1-1.txt", [2,output])
 output = amp.run_to_completion()
-print(output)
-amp.add_input(1)
-amp.add_input(output)
+#print(output)
+amp = intcode("test1-1.txt", [1,output])
 output = amp.run_to_completion()
-print(output)
-amp.add_input(0)
-amp.add_input(output)
+#print(output)
+amp = intcode("test1-1.txt", [0,output])
 output = amp.run_to_completion()
 print(output)

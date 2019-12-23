@@ -11,7 +11,7 @@ def run_intcode(inputs):
       line = f.readline()
       ## part 1 tests
       # (4,3,2,1,0)
-      # line = "3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0"
+      line = "3,15,3,16,1002,16,10,16,1,16,15,15,4,15,99,0,0"
       # (0,1,2,3,4)
       # line = "3,23,3,24,1002,24,10,24,1002,23,-1,23,101,5,23,23,1,24,23,23,4,23,99,0,0"
 
@@ -24,7 +24,7 @@ def run_intcode(inputs):
       parameters = list(map(int, str(full_command // 100)))
 
       while command != 99:
-        #print(command, parameters)
+        print(command, parameters)
         if command == 1:
             # addition
             operand1 = ops[index+1]
@@ -161,12 +161,18 @@ def run_intcode(inputs):
 
 outputs = []
 
-for phases in itertools.permutations(range(5)):
-  output = 0
-  for phase in phases:
-    output = run_intcode([phase, output])
+def part1():
+  for phases in itertools.permutations(range(5)):
+    output = 0
+    for phase in phases:
+      output = run_intcode([phase, output])
 
-  print(phases,"->", output)
-  outputs.append(output)
+    print(phases,"->", output)
+    outputs.append(output)
 
-print(max(outputs))
+  print(max(outputs))
+
+output = 0
+for phase in (4,3,2,1,0):
+  output = run_intcode([phase, output])
+print(output)
